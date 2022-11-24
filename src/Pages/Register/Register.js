@@ -3,41 +3,59 @@ import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const Register = () => {
     const [error, setError] = useState('');
-  const { createUser, updateUserProfile, loading, setLoading } = useContext(AuthContext);
+    const { createUser, updateUserProfile, loading, setLoading } = useContext(AuthContext);
 
-  const handleSubmit = event => {
-    setLoading(true);
-    event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const photoURL = form.photoURL.value;
-    const email = form.email.value;
-    const password = form.password.value;
+    const saveUser = (name, email, role) => {
+        const user = { name, email, role };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+      };
 
-    createUser(email, password)
-      .then(result => {
-        const user = result.user;
-        console.log(user);
-        setError('');
-        form.reset();
-        handleUpdateUserProfile(name, photoURL);
-      })
-      .catch(e => {
-        console.error(e);
-        setError(e.message);
-      });
-  }
-
-  const handleUpdateUserProfile = (name, photoURL) => {
-    const profile = {
-      displayName: name,
-      photoURL: photoURL
+    const handleSubmit = event => {
+        setLoading(true);
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const role = form.role.value;
+        console.log('the role is ',role);
+        
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setError('');
+                form.reset();
+                handleUpdateUserProfile(name, photoURL);
+                saveUser(name, email, role);
+            })
+            .catch(e => {
+                console.error(e);
+                setError(e.message);
+            });
     }
 
-    updateUserProfile(profile)
-      .then(() => { })
-      .catch(error => console.error(error));
-  }
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error));
+    }
     return (
         <div>
             <div className='flex justify-center'>
@@ -64,6 +82,18 @@ const Register = () => {
                                 <a rel="noopener noreferrer" href="#">Forgot Password?</a>
                             </div>
                         </div>
+
+                        {/* giving role */}
+                        <div className="space-y-1 text-sm">
+                            <label className="block dark:text-gray-400">Select Your Account Type</label>
+                            <select name="role" className="select w-full max-w-xs">
+                                <option value="buyer"  selected>Buyer</option>
+                                <option value="seller" >seller</option>
+                                <option value="admin" >admin</option>
+                            </select>
+                        </div>
+
+
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Login" />
                         </div>
