@@ -1,9 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import BookingModal from './BookingModal/BookingModal';import toast, { Toaster } from 'react-hot-toast';
+
+const notify = () => toast('Booking Successfull.');
 
 const CategoryProducts = () => {
     const products = useLoaderData();
+    const [selectedProduct, setSelectedProduct] = useState(null);
     // const [products, setProducts] = useState([])
     // const { loading, setLoading } = useContext(AuthContext);
 
@@ -14,19 +18,31 @@ const CategoryProducts = () => {
 
     // }, []);
     return (
-        <div>
-            this is detailed prodects of the said category.
-            {products.map(product => <div className="card card-compact w-96 bg-base-100 shadow-xl">
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+            {products.map(product => <div key={product._id} className="card card-compact w-96 bg-base-100 shadow-xl">
                 <figure><img src={product.img} alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{product.productName}</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <p>location: {product.sellerLocation}</p>
+                    <p>resale price: {product.resalePrice}</p>
+                    <p>original price: {product.orgPrice}</p>
+                    <p>years of use: {product.yearsOfUse}</p>
+                    <p>Date: {product.postDate}</p>
+                    <p>Sellers name: {product.sellerName}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
+                        <label onClick={() => setSelectedProduct(product)} htmlFor="booking-modal" className="btn">Buy Now</label>
                     </div>
                 </div>
-            </div>)}
+            </div>
+            )}
 
+            {
+                selectedProduct && <BookingModal
+                    selectedProduct={selectedProduct}
+                    setSelectedProduct={setSelectedProduct}
+                    notify={notify}></BookingModal>
+            }
+            <Toaster />
         </div>
     );
 };

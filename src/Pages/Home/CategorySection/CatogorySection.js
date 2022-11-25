@@ -22,11 +22,12 @@ const {loading, setLoading} = useContext(AuthContext);
                     <div className="card-body items-center text-center">
                         <h2 className="card-title">{category.name}</h2>
                         <div className="card-actions">
-                            <Link to={`/category/${category.id}`}><button className="btn btn-primary">Open Now</button></Link>
+                            <Link to={`/category/${category.name}`}><button className="btn btn-primary">Open Now</button></Link>
                         </div>
                     </div>
                 </div>)
             }
+            
         </div>
     );
 };

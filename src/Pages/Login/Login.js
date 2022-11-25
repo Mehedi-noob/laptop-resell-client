@@ -1,14 +1,45 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState('');
-    const { signIn, setLoading } = useContext(AuthContext);
+    const { signIn, providerLogin, setLoading } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
     const navigate = useNavigate();
     const location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
+
+    const saveUser = (name, email, role) => {
+        const user = { name, email, role };
+        console.log(user);
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+      };
+
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                if (user.uid) {
+                    navigate(from, { replace: true });
+                    console.log("navigate is working")
+                    saveUser(user.displayName, user.email, 'buyer');
+                }
+            })
+    }
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -58,6 +89,7 @@ const Login = () => {
                 <p className="text-xs text-center sm:px-6 dark:text-gray-400">Don't have an account?
                 </p>
             </div>
+            <button onClick={handleGoogleSignIn} className='btn btn-ghost'>login from google</button>
         </div>
     );
 };
