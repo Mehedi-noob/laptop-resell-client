@@ -5,20 +5,20 @@ const Register = () => {
     const [error, setError] = useState('');
     const { createUser, updateUserProfile, loading, setLoading } = useContext(AuthContext);
 
-    // const saveUser = (name, email, role) => {
-    //     const user = { name, email, role };
-    //     fetch("http://localhost:5000/users", {
-    //         method: "POST",
-    //         headers: {
-    //             "content-type": "application/json",
-    //         },
-    //         body: JSON.stringify(user),
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             console.log(data);
-    //         });
-    // };
+    const saveUser = (name, email, role) => {
+        const user = { name, email, role };
+        fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(user),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+            });
+    };
 
     const handleSubmit = event => {
         setLoading(true);
@@ -36,7 +36,7 @@ const Register = () => {
                 console.log(user);
                 setError('');
                 form.reset();
-                // saveUser(name, email, role);
+                saveUser(name, email, role);
             })
             .catch(e => {
                 console.error(e);

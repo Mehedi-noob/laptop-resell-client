@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate, useNavigation } from 'react-router-dom';
 // whats needed
 /* 1. for the form
 product name
@@ -13,10 +15,14 @@ price
 year of purchase
 
 */
+const notify = () => toast('Product successfully added');
+
 const AddProduct = () => {
+const navigation = useNavigate();
+
     const date = new Date().toUTCString();
 
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const handleAddProduct = (event) => {
         event.preventDefault();
@@ -58,7 +64,8 @@ const AddProduct = () => {
             .then((res) => res.json())
             .then((data) => console.log(data))
             .catch((err) => console.error(err));
-
+        notify();
+        navigation('/dashboard/myproduct');
     };
 
     return (
@@ -84,13 +91,13 @@ const AddProduct = () => {
 
                     <input type="text" name="yearsOfUse" id="yearsOfUse" placeholder="yearsOfUse" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
 
-                    <input type="text" name="postDate" id="postDate" placeholder="postDate" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" defaultValue={date}/>
+                    <input type="text" name="postDate" id="postDate" placeholder="postDate" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" defaultValue={date} />
 
                     <input type="text" name="img" id="img" placeholder="img" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
 
                     <input type="text" name="productName" id="productName" placeholder="productName" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
 
-                    <input type="text" name="sellerName" id="sellerName" placeholder="sellerName" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" defaultValue={user?.displayName}/>
+                    <input type="text" name="sellerName" id="sellerName" placeholder="sellerName" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" defaultValue={user?.displayName} />
 
 
                     <div className="space-y-1 text-sm">
@@ -104,12 +111,13 @@ const AddProduct = () => {
 
                     <input type="text" name="sellerLocation" id="sellerLocation" placeholder="sellerLocation" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
 
-                    <input type="email" name="sellerEmail" id="sellerEmail" placeholder="sellerEmail" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" defaultValue={user?.email}/>
+                    <input type="email" name="sellerEmail" id="sellerEmail" placeholder="sellerEmail" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" defaultValue={user?.email} />
 
                     <input type="text" name="sellerPhone" id="sellerPhone" placeholder="sellerPhone" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                     <div className="form-control mt-6">
                         <input className="btn btn-primary" type="submit" value="Submit" />
                     </div>
+                    <Toaster />
                 </form>
             </div>
 
