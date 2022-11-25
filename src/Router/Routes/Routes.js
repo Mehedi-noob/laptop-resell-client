@@ -56,6 +56,27 @@ const router = createBrowserRouter([
                 //     return fetch(`http://localhost:5000/booking/${params.email}`);
                 // },
                 element: <AddProduct></AddProduct>
+            },
+            {
+                path: '/dashboard/allsellers',
+                // loader: ({ params }) => {
+                //     return fetch(`http://localhost:5000/booking/${params.email}`);
+                // },
+                element: <AddProduct></AddProduct>
+            }
+            {
+                path: '/dashboard/allbuyers',
+                // loader: ({ params }) => {
+                //     return fetch(`http://localhost:5000/booking/${params.email}`);
+                // },
+                element: <AddProduct></AddProduct>
+            }
+            {
+                path: '/dashboard/myproduct',
+                // loader: ({ params }) => {
+                //     return fetch(`http://localhost:5000/booking/${params.email}`);
+                // },
+                element: <AddProduct></AddProduct>
             }
         ]
     }
