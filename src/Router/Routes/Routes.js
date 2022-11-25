@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Main/Main";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
+import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import DashHome from "../../Pages/Dashboard/DashHome/DashHome";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
@@ -48,6 +49,13 @@ const router = createBrowserRouter([
                     return fetch(`http://localhost:5000/booking/${params.email}`);
                 },
                 element: <MyOrders></MyOrders>
+            },
+            {
+                path: '/dashboard/addproduct',
+                // loader: ({ params }) => {
+                //     return fetch(`http://localhost:5000/booking/${params.email}`);
+                // },
+                element: <AddProduct></AddProduct>
             }
         ]
     }
