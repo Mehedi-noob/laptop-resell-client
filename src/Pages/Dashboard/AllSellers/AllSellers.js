@@ -63,7 +63,7 @@ const AllSellers = () => {
                   
                   <td><span className='text-3xl'>{seller.name}</span></td>
                   <td><span className='text-3xl'>{seller.email}</span></td>
-                  <td><button onClick={()=>handleVerify(seller.email)} className='btn btn-warning'>{seller.isVerified? 'Verified' : 'Not verified'}</button></td>
+                  <td><button onClick={()=>handleVerify(seller.email)} className='btn btn-warning'>{seller.isVerified? 'Verified' : 'Unverified'}</button></td>
                   <td><button onClick={()=>handleDelete(seller.email)} className='btn btn-error rounded'>Delete</button></td>
                   
                 </tr>

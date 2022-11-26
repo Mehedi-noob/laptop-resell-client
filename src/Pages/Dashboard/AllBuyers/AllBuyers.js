@@ -63,7 +63,7 @@ return (
               
               <td><span className='text-3xl'>{buyer.name}</span></td>
               <td><span className='text-3xl'>{buyer.email}</span></td>
-              <td><button onClick={()=>handleVerify(buyer.email)} className='btn btn-warning'>{buyer.isVerified? 'Verified' : 'Not verified'}</button></td>
+              <td><button onClick={()=>handleVerify(buyer.email)} className='btn btn-warning'>{buyer.isVerified? 'Verified' : 'Unverified'}</button></td>
               <td><button onClick={()=>handleDelete(buyer.email)} className='btn btn-error rounded'>Delete</button></td>
               
             </tr>

@@ -1,20 +1,19 @@
 import userEvent from '@testing-library/user-event';
+import { data } from 'autoprefixer';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
-const BookingModal = ({ selectedProduct,setSelectedProduct, notify }) => {
+const BookingModal = ({ selectedProduct,setSelectedProduct, toast }) => {
     const { user } = useContext(AuthContext);
 
     const handleConfirmOrder = (event) => {
         event.preventDefault();
         const form = event.target;
-        // const buyersName = form.name.value;
-        // const buyersEmail = form.email.value;
-        // const productName = form.productName.value;
-        // const resalePrice = form.price.value;
         const number = form.number.value;
         const location = form.location.value;
         const booking = {
+            productId: selectedProduct._id,
             buyersName: user?.displayName,
             buyersEmail: user.email,
             productName: selectedProduct?.productName,
@@ -34,9 +33,20 @@ const BookingModal = ({ selectedProduct,setSelectedProduct, notify }) => {
             body: JSON.stringify(booking),
         })
             .then((res) => res.json())
-            .then((data) => console.log(data))
+            .then((data) => {
+                if(data.acknowledged){
+               
+                    toast('booking successfull');
+    
+                }
+                else {
+                    toast('Item is already booked');
+
+                }
+            })
             .catch((err) => console.error(err));
-            notify();
+           
+            
             setSelectedProduct(null);
 
     };
@@ -57,10 +67,11 @@ const BookingModal = ({ selectedProduct,setSelectedProduct, notify }) => {
                     <h2 className="font-bold text-lg">Product Price: {selectedProduct?.resalePrice}</h2>
                     <form onSubmit={handleConfirmOrder} className='grid grid-cols-1 gap-3 mt-10'>
                         <input name="number" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
+
                         <input name="location" type="location" placeholder="location" className="input w-full input-bordered" />
                         <br />
                         <label htmlFor="booking-modal"><input className='btn btn-accent w-full' type="submit" value="Submit" /></label>
-                        <label htmlFor="booking-modal" className="btn">Cancel</label>
+                        <label onClick={()=>setSelectedProduct(null)} htmlFor="booking-modal" className="btn">Cancel</label>
                     </form>
 
                 </div>
