@@ -14,6 +14,32 @@ const AllSellers = () => {
     });
     console.log(sellers);
 
+    const handleDelete = (email) => {
+      fetch(`http://localhost:5000/users/${email}`, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if(data.deletedCount > 0){
+                // toast.success('Deleted Successfully')
+                refetch();
+              }
+            });
+    };
+
+    const handleVerify = (email) => {
+      fetch(`http://localhost:5000/users/${email}`, {
+            method: "PUT",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.modifiedCount > 0) {
+                // toast.success("Make Admin Successfully");
+                refetch();
+              }
+            });
+    };
+
     return (
         <div>
         <h2 className="text-4xl text-center font-bold mb-5">My Products</h2>
@@ -26,6 +52,7 @@ const AllSellers = () => {
                 <th className='text-3xl'>Name</th>
                 <th className='text-3xl'>Email</th>
                 <th></th>
+                <th></th>
                 
               </tr>
             </thead>
@@ -36,7 +63,8 @@ const AllSellers = () => {
                   
                   <td><span className='text-3xl'>{seller.name}</span></td>
                   <td><span className='text-3xl'>{seller.email}</span></td>
-                  <td><button className='btn btn-error rounded'>Delete</button></td>
+                  <td><button onClick={()=>handleVerify(seller.email)} className='btn btn-warning'>{seller.isVerified? 'Verified' : 'Not verified'}</button></td>
+                  <td><button onClick={()=>handleDelete(seller.email)} className='btn btn-error rounded'>Delete</button></td>
                   
                 </tr>
               ))}

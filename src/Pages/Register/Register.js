@@ -6,7 +6,7 @@ const Register = () => {
     const { createUser, updateUserProfile, loading, setLoading } = useContext(AuthContext);
 
     const saveUser = (name, email, role) => {
-        const user = { name, email, role };
+        const user = { name, email, role, isVerified: false };
         fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {

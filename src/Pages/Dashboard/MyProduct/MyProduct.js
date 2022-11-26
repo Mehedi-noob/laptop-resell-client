@@ -15,7 +15,19 @@ const MyProduct = () => {
         .catch((err) => {
           console.log(err);
         });
-    }, [user?.email]);
+    }, [user?.email, myProducts]);
+
+    const handleAdvertize = (id) => {
+      fetch(`http://localhost:5000/myproduct/${id}`, {
+            method: "PUT",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.modifiedCount > 0) {
+                // toast.success("Make Admin Successfully");
+              }
+            });
+    };
   
     return (
       <div>
@@ -28,7 +40,8 @@ const MyProduct = () => {
             <th className='text-3xl'>Image</th>
             <th className='text-3xl'>Name</th>
             <th className='text-3xl'>Price</th>
-            <th className='text-3xl'>Payment</th>
+            <th className='text-3xl'>Status</th>
+            <th className='text-3xl'></th>
           </tr>
         </thead>
         <tbody>
@@ -39,6 +52,7 @@ const MyProduct = () => {
               <td><span className='text-3xl'>{myProduct.productName}</span></td>
               <td><span className='text-3xl'>${myProduct.resalePrice}</span></td>
               <td><button className="btn btn-md  btn-primary">available</button></td>
+              <td><button onClick={()=> handleAdvertize(myProduct._id)} className="btn btn-md  btn-info">{myProduct.isAdvertized? 'Advertized ✓' : 'Advertize it?'}</button></td>
             </tr>
           ))}
         </tbody>

@@ -5,6 +5,8 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 const DashHeader = () => {
     const { user } = useContext(AuthContext);
 
+    
+
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -17,7 +19,7 @@ const DashHeader = () => {
                             <li><Link to="/">Home</Link></li>
                             <li><Link to={`/dashboard/myorders/${user?.email}`}>My Orders</Link></li>
                             <li><Link to="/dashboard/addproduct">Add Products</Link></li>
-                            <li><Link to="/">My Products</Link></li>
+                            <li><Link to="/dashboard/myproduct">My Products</Link></li>
                             <li><Link to="/">My Buyers</Link></li>
                             <li><Link to="/">All Sellers</Link></li>
                             <li><Link to="/">All Buyers</Link></li>
@@ -31,9 +33,9 @@ const DashHeader = () => {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to={`/dashboard/myorders/${user?.email}`}>My Orders</Link></li>
                         <li><Link to="/dashboard/addproduct">Add Products</Link></li>
-                        <li><Link to="/">My Products</Link></li>
-                        <li><Link to="/">My Buyers</Link></li>
-                        <li><Link to="/">All Sellers</Link></li>
+                        <li><Link to="/dashboard/myproduct">My Products</Link></li>
+                        <li><Link to="/dashboard/allbuyers">My Buyers</Link></li>
+                        <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
                         <li><Link to="/">All Buyers</Link></li>
                         <li><Link to="/">Log Out</Link></li>
                     </ul>

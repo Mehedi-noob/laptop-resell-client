@@ -27,7 +27,7 @@ const navigation = useNavigate();
     const handleAddProduct = (event) => {
         event.preventDefault();
         const form = event.target;
-        const isVarified = false;
+        const isVerified = false;
         const orgPrice = form.orgPrice.value;
         const resalePrice = form.resalePrice.value;
         const yearsOfUse = form.yearsOfUse.value;
@@ -40,7 +40,7 @@ const navigation = useNavigate();
         const sellerEmail = form.sellerEmail.value;
         const sellerPhone = form.sellerPhone.value;
         const addedProduct = {
-            isVarified,
+            isVerified,
             orgPrice,
             resalePrice,
             yearsOfUse,
