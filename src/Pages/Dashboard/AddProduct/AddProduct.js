@@ -41,6 +41,7 @@ const AddProduct = () => {
         const sellerPhone = form.sellerPhone.value;
         const description = form.description.value;
         const addedProduct = {
+            isAvailable: true,
             isVerified,
             orgPrice,
             resalePrice,

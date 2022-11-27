@@ -10,6 +10,7 @@ import DashHome from "../../Pages/Dashboard/DashHome/DashHome";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProduct from "../../Pages/Dashboard/MyProduct/MyProduct";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
+import ReprotedItems from "../../Pages/Dashboard/ReprotedItems/ReprotedItems";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
@@ -100,6 +101,11 @@ const router = createBrowserRouter([
                     return fetch(`http://localhost:5000/bookings/${params.id}`);
                 },
                 element: <Payment></Payment>
+            },
+            {
+                path: '/dashboard/reporteditems',
+                
+                element: <ReprotedItems></ReprotedItems>
             }
         ]
     }

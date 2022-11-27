@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const MyProduct = () => {
     const { user } = useContext(AuthContext);
@@ -28,6 +29,19 @@ const MyProduct = () => {
               }
             });
     };
+
+    const handleDelete =(id)=>{
+      fetch(`http://localhost:5000/myproduct/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if(data.deletedCount > 0){
+            toast.success('Deleted Successfully')
+           
+          }
+        });
+    }
   
     return (
       <div>
@@ -53,11 +67,13 @@ const MyProduct = () => {
               <td><span className='text-3xl'>${myProduct.resalePrice}</span></td>
               <td><button className="btn btn-md  btn-primary">{myProduct.paid?'not available':'available'}</button></td>
               <td><button onClick={()=> handleAdvertize(myProduct._id)} className="btn btn-md  btn-info">{myProduct.isAdvertized? 'Advertized ✓' : 'Advertize it?'}</button></td>
+              <td><button onClick={()=>handleDelete(myProduct._id)} className="btn btn-md  btn-error">delete</button></td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
+    <Toaster/>
   </div>
   );
 };
