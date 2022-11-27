@@ -51,7 +51,7 @@ const MyProduct = () => {
               <td><img className='rounded-xl' style={{width:'100px'}} src={myProduct.img} alt="" /></td>
               <td><span className='text-3xl'>{myProduct.productName}</span></td>
               <td><span className='text-3xl'>${myProduct.resalePrice}</span></td>
-              <td><button className="btn btn-md  btn-primary">available</button></td>
+              <td><button className="btn btn-md  btn-primary">{myProduct.paid?'not available':'available'}</button></td>
               <td><button onClick={()=> handleAdvertize(myProduct._id)} className="btn btn-md  btn-info">{myProduct.isAdvertized? 'Advertized ✓' : 'Advertize it?'}</button></td>
             </tr>
           ))}

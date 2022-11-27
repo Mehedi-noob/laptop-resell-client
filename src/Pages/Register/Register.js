@@ -71,7 +71,7 @@ const Register = () => {
                             <select name="role" className="select w-full max-w-xs">
                                 <option value="buyer" defaultValue>Buyer</option>
                                 <option value="seller" >seller</option>
-                                <option value="admin" >admin</option>
+                                {/* <option value="admin" >admin</option> */}
                             </select>
                         </div>
 

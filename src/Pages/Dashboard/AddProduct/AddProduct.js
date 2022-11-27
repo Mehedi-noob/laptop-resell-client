@@ -18,7 +18,7 @@ year of purchase
 const notify = () => toast('Product successfully added');
 
 const AddProduct = () => {
-const navigation = useNavigate();
+    const navigation = useNavigate();
 
     const date = new Date().toUTCString();
 
@@ -39,6 +39,7 @@ const navigation = useNavigate();
         const sellerLocation = form.sellerLocation.value;
         const sellerEmail = form.sellerEmail.value;
         const sellerPhone = form.sellerPhone.value;
+        const description = form.description.value;
         const addedProduct = {
             isVerified,
             orgPrice,
@@ -51,7 +52,8 @@ const navigation = useNavigate();
             categoryName,
             sellerLocation,
             sellerEmail,
-            sellerPhone
+            sellerPhone,
+            description
         }
         console.log(addedProduct)
         fetch("http://localhost:5000/addproduct", {
@@ -85,17 +87,17 @@ const navigation = useNavigate();
                     input field
                     <label className="block dark:text-gray-400">This is a label</label>
 
-                    <input type="text" name="orgPrice" id="orgPrice" placeholder="orgPrice" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                    <input type="text" name="orgPrice" id="orgPrice" placeholder="orgPrice" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required/>
 
-                    <input type="text" name="resalePrice" id="resalePrice" placeholder="resalePrice" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                    <input type="text" name="resalePrice" id="resalePrice" placeholder="resalePrice" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required/>
 
-                    <input type="text" name="yearsOfUse" id="yearsOfUse" placeholder="yearsOfUse" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                    <input type="text" name="yearsOfUse" id="yearsOfUse" placeholder="yearsOfUse" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required/>
 
                     <input type="text" name="postDate" id="postDate" placeholder="postDate" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" defaultValue={date} />
 
-                    <input type="text" name="img" id="img" placeholder="img" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                    <input type="text" name="img" id="img" placeholder="img" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required/>
 
-                    <input type="text" name="productName" id="productName" placeholder="productName" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                    <input type="text" name="productName" id="productName" placeholder="productName" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required/>
 
                     <input type="text" name="sellerName" id="sellerName" placeholder="sellerName" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" defaultValue={user?.displayName} />
 
@@ -109,11 +111,14 @@ const navigation = useNavigate();
                         </select>
                     </div>
 
-                    <input type="text" name="sellerLocation" id="sellerLocation" placeholder="sellerLocation" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                    <input type="text" name="sellerLocation" id="sellerLocation" placeholder="sellerLocation" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required/>
 
                     <input type="email" name="sellerEmail" id="sellerEmail" placeholder="sellerEmail" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" defaultValue={user?.email} />
 
-                    <input type="text" name="sellerPhone" id="sellerPhone" placeholder="sellerPhone" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                    <input type="text" name="sellerPhone" id="sellerPhone" placeholder="sellerPhone" className="border w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required/>
+
+                    <textarea type="text" name="description" className="description" placeholder="about your product"></textarea>
+
                     <div className="form-control mt-6">
                         <input className="btn btn-primary" type="submit" value="Submit" />
                     </div>

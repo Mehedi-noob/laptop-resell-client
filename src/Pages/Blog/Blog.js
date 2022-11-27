@@ -9,19 +9,19 @@ const Blog = () => {
                 <p>Ans. We have to set initial state value inside constructor function and set click event handler of the element upon which click, results in changing state. Then pass the function to the click handler and change the state of the component inside the function using setState.</p>
             </div>
             <div className='border card-body rounded-box'>
-                <h1>What is JWT, and how does it work?</h1>
-                <p>Ans. What is JWT (JSON Web Token)? JSON Web Token (JWT) is an open standard (RFC 7519) for securely transmitting information between parties as JSON object. It is compact, readable and digitally signed using a private key/ or a public key pair by the Identity Provider(IdP).
+                <h1>How does prototypical inheritance work?</h1>
+                <p>Ans. The Prototypal Inheritance is a feature in javascript used to add methods and properties in objects. It is a method by which an object can inherit the properties and methods of another object. Traditionally, in order to get and set the [[Prototype]] of an object, we use Object. getPrototypeOf and Object.
 
                 </p>
             </div>
             <div className='border card-body rounded-box'>
 
-                <h1>What is the difference between javascript and NodeJS?</h1>
-                <p>Ans. JavaScript is a simple programming language that can be used with any browser that has the JavaScript Engine installed. Node. js, on the other hand, is an interpreter or execution environment for the JavaScript programming language.</p>
+                <h1>What is a unit test? Why should we write unit tests?</h1>
+                <p>Ans. The main objective of unit testing is to isolate written code to test and determine if it works as intended. Unit testing is an important step in the development process, because if done correctly, it can help detect early flaws in code which may be more difficult to find in later testing stages.</p>
             </div>
             <div className='border card-body rounded-box'>
-                <h1>How does NodeJS handle multiple requests at the same time?</h1>
-                <p>Ans.  NodeJS receives multiple client requests and places them into EventQueue. NodeJS is built with the concept of event-driven architecture. NodeJS has its own EventLoop which is an infinite loop that receives requests and processes them.
+                <h1>React vs. Angular vs. Vue?</h1>
+                <p>Ans.  Vue provides higher customizability and hence is easier to learn than Angular or React. Further, Vue has an overlap with Angular and React with respect to their functionality like the use of components. Hence, the transition to Vue from either of the two is an easy option.
                 </p>
             </div>
         </div>
