@@ -8,18 +8,21 @@ import Dashboard from "../../Pages/Dashboard/Dashboard";
 import DashHome from "../../Pages/Dashboard/DashHome/DashHome";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProduct from "../../Pages/Dashboard/MyProduct/MyProduct";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
+import ErrorRoute from "./ErrorRoute/ErrorRoute";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorRoute></ErrorRoute>,
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <Home></Home>,
             },
             {
                 path: '/login',
@@ -41,6 +44,8 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <Dashboard></Dashboard>,
+        errorElement: <ErrorRoute></ErrorRoute>,
+
         children: [
             {
                 path: '/dashboard',
@@ -80,9 +85,17 @@ const router = createBrowserRouter([
                 //     return fetch(`http://localhost:5000/booking/${params.email}`);
                 // },
                 element: <MyProduct></MyProduct>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                loader: ({ params }) => {
+                    return fetch(`http://localhost:5000/bookings/${params.id}`);
+                },
+                element: <Payment></Payment>
             }
         ]
     }
+    
 ])
 
 export default router;
