@@ -22,11 +22,15 @@ const Products = ({product, setSelectedProduct}) => {
         .then(res=>res.json())
         .then(data => setSeller(data))
       },[product.sellerEmail])
+      
+      if(!product.isAvailable){
+        return;
+      }
 
     return (
         <div>
             <div className="card card-compact w-96 bg-base-100 shadow-xl">
-                <figure><img src={product.img} alt="Shoes" /></figure>
+                <figure><img className='w-full' style={{height: "300px"}} src={product.img} alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{product.productName}</h2>
                     <p>location: {product.sellerLocation}</p>

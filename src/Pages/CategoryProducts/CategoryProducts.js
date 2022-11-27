@@ -9,8 +9,6 @@ import Products from '../Products/Products';
 const CategoryProducts = () => {
     const products = useLoaderData();
     const [selectedProduct, setSelectedProduct] = useState(null);
-    // const [products, setProducts] = useState([])
-    // const { loading, setLoading } = useContext(AuthContext);
 
     // useEffect(() => {
     //     fetch('http://localhost:5000/category${categoryId}')
@@ -18,6 +16,7 @@ const CategoryProducts = () => {
     //         .then(data => setProducts(data));
 
     // }, []);
+    // console.log(products);
 
     
 

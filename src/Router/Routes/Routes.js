@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Main/Main";
+import Blog from "../../Pages/Blog/Blog";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
@@ -12,7 +13,10 @@ import Payment from "../../Pages/Dashboard/Payment/Payment";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
+import AdminRoute from "./AdminRoute/AdminRoute";
 import ErrorRoute from "./ErrorRoute/ErrorRoute";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import SellerRoute from "./SellerRoute/SellerRoute";
 
 const router = createBrowserRouter([
     {
@@ -33,11 +37,15 @@ const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
+                path: '/blog',
+                element: <Blog></Blog>
+            },
+            {
                 path: '/category/:name',
                 loader: ({ params }) => {
                     return fetch(`http://localhost:5000/category/${params.name}`);
                 },
-                element: <CategoryProducts></CategoryProducts>
+                element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>
             }
         ]
     },
@@ -63,28 +71,28 @@ const router = createBrowserRouter([
                 // loader: ({ params }) => {
                 //     return fetch(`http://localhost:5000/booking/${params.email}`);
                 // },
-                element: <AddProduct></AddProduct>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
             {
                 path: '/dashboard/allsellers',
                 // loader: ({ params }) => {
                 //     return fetch(`http://localhost:5000/booking/${params.email}`);
                 // },
-                element: <AllSellers></AllSellers>
+                element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
                 path: '/dashboard/allbuyers',
                 // loader: ({ params }) => {
                 //     return fetch(`http://localhost:5000/booking/${params.email}`);
                 // },
-                element: <AllBuyers></AllBuyers>
+                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             },
             {
                 path: '/dashboard/myproduct',
                 // loader: ({ params }) => {
                 //     return fetch(`http://localhost:5000/booking/${params.email}`);
                 // },
-                element: <MyProduct></MyProduct>
+                element: <SellerRoute><MyProduct></MyProduct></SellerRoute>
             },
             {
                 path: '/dashboard/payment/:id',
