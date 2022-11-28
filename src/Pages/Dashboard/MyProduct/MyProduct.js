@@ -29,7 +29,8 @@ const MyProduct = () => {
               }
             });
     };
-
+    
+    // delete products 
     const handleDelete =(id)=>{
       fetch(`http://localhost:5000/myproduct/${id}`, {
         method: "DELETE",

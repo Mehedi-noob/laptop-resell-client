@@ -19,6 +19,7 @@ const AllSellers = () => {
   });
   console.log(sellers);
 
+  // delete seller 
   const handleDelete = (email) => {
     fetch(`http://localhost:5000/users/${email}`, {
       method: "DELETE",
@@ -46,7 +47,7 @@ const AllSellers = () => {
 
   return (
     <div>
-      <h2 className="text-4xl text-center font-bold mb-5">My Products</h2>
+      <h2 className="text-4xl text-center font-bold mb-5">All Sellers</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>

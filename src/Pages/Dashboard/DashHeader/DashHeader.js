@@ -7,6 +7,7 @@ const DashHeader = () => {
 
     const [userRole, setUserRole] = useState([]);
 
+    // fetching role of the users 
     useEffect(() => {
         fetch(`http://localhost:5000/users/${user?.email}`)
             .then(res => res.json())

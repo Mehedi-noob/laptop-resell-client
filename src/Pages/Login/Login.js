@@ -42,13 +42,26 @@ const Login = () => {
         providerLogin(googleProvider)
             .then(result => {
                 const user = result.user;
-                setLoginUserEmail(user.email);
                 console.log(user);
-                if (user.uid) {
-                    navigate(from, { replace: true });
-                    console.log("navigate is working")
-                    saveUser(user.displayName, user.email, 'buyer');
-                }
+                // if (user.uid) {
+                //     navigate(from, { replace: true });
+                //     console.log("navigate is working")
+                //     saveUser(user.displayName, user.email, 'buyer');
+                //     // setLoginUserEmail(user.email);
+                //     if (user.email) {
+                //         fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                //             .then(res => res.json())
+                //             .then(data => {
+                //                 if (data.accessToken) {
+                //                     localStorage.setItem('accessToken', data.accessToken);
+                                    
+                //                 }
+                //             });
+                //     }
+                // }
+                setTimeout(() => {
+                     setLoginUserEmail(user.email);
+                }, 1000);
             })
     }
 
@@ -62,17 +75,31 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 const user = result.user;
-                setLoginUserEmail(user.email);
+                setLoginUserEmail(email);
+                if (email) {
+                    fetch(`http://localhost:5000/jwt?email=${email}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.accessToken) {
+                                localStorage.setItem('accessToken', data.accessToken);
+                                
+                            }
+                        });
+                }
+                // setTimeout(() => {
+                //     setLoginUserEmail(email);
+                // }, 2000);
                 console.log(user);
-                form.reset();
                 setError('');
                 navigate(from, { replace: true });
+                form.reset();
             })
             .catch(error => {
                 console.error(error)
                 setError(error.message);
             })
             .finally(() => {
+                // setLoginUserEmail(email);
                 setLoading(false);
             })
     }

@@ -4,6 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const ReprotedItems = () => {
 
+  // fetch reported items 
     const {
         data: reportedItems = [],
         refetch,
@@ -33,7 +34,7 @@ const ReprotedItems = () => {
 
     return (
         <div>
-      <h2 className="text-4xl text-center font-bold mb-5">My Products</h2>
+      <h2 className="text-4xl text-center font-bold mb-5">Reported Items</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>

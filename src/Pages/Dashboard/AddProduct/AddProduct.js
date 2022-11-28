@@ -24,6 +24,7 @@ const AddProduct = () => {
 
     const { user } = useContext(AuthContext);
 
+    // add product from form 
     const handleAddProduct = (event) => {
         event.preventDefault();
         const form = event.target;

@@ -32,6 +32,15 @@ const Register = () => {
             });
     };
 
+    const handleUpdateUserProfile = (name) => {
+        const profile = {
+          displayName: name
+        };
+        updateUserProfile(profile)
+          .then(() => {})
+          .catch((e) => console.log(e));
+      };
+
     const handleSubmit = event => {
         setLoading(true);
         event.preventDefault();
@@ -45,11 +54,25 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
+                saveUser(name, email, role);
+                handleUpdateUserProfile(name);
                 console.log(user);
                 setError('');
+                setTimeout(() => {
+                    setCreatedUserEmail(user.email);
+                }, 1000);
+                // if (user.email) {
+                //     fetch(`http://localhost:5000/jwt?email=${email}`)
+                //         .then(res => res.json())
+                //         .then(data => {
+                //             if (data.accessToken) {
+                //                 localStorage.setItem('accessToken', data.accessToken);
+                                
+                //             }
+                //         });
+                // }
+                setLoading(false);
                 form.reset();
-                saveUser(name, email, role);
-                setCreatedUserEmail(user.email);
             })
             .catch(e => {
                 console.error(e);
