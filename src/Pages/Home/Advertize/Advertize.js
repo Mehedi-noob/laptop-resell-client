@@ -13,7 +13,7 @@ const Advertize = () => {
       } = useQuery({
         queryKey: ["allAddProduct"],
         queryFn: async () => {
-          const res = await fetch(`http://localhost:5000/advertize`,{
+          const res = await fetch(`https://laptop-resell-server.vercel.app/advertize`,{
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
@@ -31,7 +31,7 @@ const Advertize = () => {
     // const { data: products = [], refetch } = useQuery({
     //     queryKey: ['products'],
     //     queryFn: async () => {
-    //         const res = await fetch("http://localhost:5000/advertize",{
+    //         const res = await fetch("https://laptop-resell-server.vercel.app/advertize",{
     //             headers: {
     //                 authorization: `bearer ${localStorage.getItem('accessToken')}`
     //             }

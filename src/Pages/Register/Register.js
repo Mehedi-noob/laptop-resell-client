@@ -17,7 +17,7 @@ const Register = () => {
 
     const saveUser = (name, email, role) => {
         const user = { name, email, role, isVerified: false };
-        fetch("http://localhost:5000/users", {
+        fetch("https://laptop-resell-server.vercel.app/users", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -62,7 +62,7 @@ const Register = () => {
                     setCreatedUserEmail(user.email);
                 }, 1000);
                 // if (user.email) {
-                //     fetch(`http://localhost:5000/jwt?email=${email}`)
+                //     fetch(`https://laptop-resell-server.vercel.app/jwt?email=${email}`)
                 //         .then(res => res.json())
                 //         .then(data => {
                 //             if (data.accessToken) {

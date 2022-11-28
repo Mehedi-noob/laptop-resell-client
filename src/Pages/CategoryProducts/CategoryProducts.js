@@ -16,7 +16,7 @@ const CategoryProducts = () => {
     // const { data: products = [], refetch } = useQuery({
     //     queryKey: ['products'],
     //     queryFn: async () => {
-    //       const res = await fetch(`http://localhost:5000/category/${id}`);
+    //       const res = await fetch(`https://laptop-resell-server.vercel.app/category/${id}`);
     //       const data = await res.json();
     
     //       return data;
@@ -24,7 +24,7 @@ const CategoryProducts = () => {
     //   });
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/category${categoryId}')
+    //     fetch('https://laptop-resell-server.vercel.app/category${categoryId}')
     //         .then(res => res.json())
     //         .then(data => setProducts(data));
 

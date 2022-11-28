@@ -1,8 +1,8 @@
 # Laptop Resell #
 
-### Live Site Link :  ###
+### Live Site Link :  https://laptop-resell.web.app  ###
 
-### Live Server Link :  ###
+### Live Server Link : https://laptop-resell-server.vercel.app/ ###
 
 ### Features and Functionality : ###
 

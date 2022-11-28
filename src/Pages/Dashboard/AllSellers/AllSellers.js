@@ -7,7 +7,7 @@ const AllSellers = () => {
   const { data: sellers = [], refetch } = useQuery({
     queryKey: ['sellers'],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users?role=seller",{
+      const res = await fetch("https://laptop-resell-server.vercel.app/users?role=seller",{
         headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`
         }
@@ -21,7 +21,7 @@ const AllSellers = () => {
 
   // delete seller 
   const handleDelete = (email) => {
-    fetch(`http://localhost:5000/users/${email}`, {
+    fetch(`https://laptop-resell-server.vercel.app/users/${email}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -34,7 +34,7 @@ const AllSellers = () => {
   };
 
   const handleVerify = (email) => {
-    fetch(`http://localhost:5000/users/${email}`, {
+    fetch(`https://laptop-resell-server.vercel.app/users/${email}`, {
       method: "PUT",
     })
       .then((res) => res.json())

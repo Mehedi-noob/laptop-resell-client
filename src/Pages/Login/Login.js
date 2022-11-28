@@ -23,7 +23,7 @@ const Login = () => {
     const saveUser = (name, email, role) => {
         const user = { name, email, role };
         console.log(user);
-        fetch("http://localhost:5000/users", {
+        fetch("https://laptop-resell-server.vercel.app/users", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -49,7 +49,7 @@ const Login = () => {
                 //     saveUser(user.displayName, user.email, 'buyer');
                 //     // setLoginUserEmail(user.email);
                 //     if (user.email) {
-                //         fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                //         fetch(`https://laptop-resell-server.vercel.app/jwt?email=${user.email}`)
                 //             .then(res => res.json())
                 //             .then(data => {
                 //                 if (data.accessToken) {
@@ -77,7 +77,7 @@ const Login = () => {
                 const user = result.user;
                 setLoginUserEmail(email);
                 if (email) {
-                    fetch(`http://localhost:5000/jwt?email=${email}`)
+                    fetch(`https://laptop-resell-server.vercel.app/jwt?email=${email}`)
                         .then(res => res.json())
                         .then(data => {
                             if (data.accessToken) {

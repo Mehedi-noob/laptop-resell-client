@@ -10,7 +10,7 @@ const Products = ({product, setSelectedProduct}) => {
     // const {data: seller = [], refetch} = useQuery({
     //     queryKey: ['seller'],
     //     queryFn: async() =>{
-    //         const res = await fetch(`http://localhost:5000/users/${product.sellerEmail}`);
+    //         const res = await fetch(`https://laptop-resell-server.vercel.app/users/${product.sellerEmail}`);
     //         const data = await res.json();
 
     //         console.log(data);
@@ -20,7 +20,7 @@ const Products = ({product, setSelectedProduct}) => {
     // console.log(seller, product.sellerEmail,"seller")
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/users/${product.sellerEmail}`)
+        fetch(`https://laptop-resell-server.vercel.app/users/${product.sellerEmail}`)
         .then(res=>res.json())
         .then(data => setSeller(data))
       },[product.sellerEmail])
@@ -30,7 +30,7 @@ const Products = ({product, setSelectedProduct}) => {
       }
 
       const handleReport = (id) => {
-        fetch(`http://localhost:5000/report/${id}`, {
+        fetch(`https://laptop-resell-server.vercel.app/report/${id}`, {
               method: "PUT",
             })
               .then((res) => res.json())

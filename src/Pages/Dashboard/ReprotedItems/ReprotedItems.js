@@ -12,14 +12,14 @@ const ReprotedItems = () => {
       } = useQuery({
         queryKey: ["reportedItems"],
         queryFn: async () => {
-          const res = await fetch('http://localhost:5000/report');
+          const res = await fetch('https://laptop-resell-server.vercel.app/report');
           const data = await res.json();
           return data;
         },
       });
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/myproduct/${id}`, {
+        fetch(`https://laptop-resell-server.vercel.app/myproduct/${id}`, {
               method: "DELETE",
             })
               .then((res) => res.json())

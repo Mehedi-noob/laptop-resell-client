@@ -9,7 +9,7 @@ const DashHeader = () => {
 
     // fetching role of the users 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://laptop-resell-server.vercel.app/users/${user?.email}`)
             .then(res => res.json())
             .then(data => setUserRole(data))
     }, [user?.email])

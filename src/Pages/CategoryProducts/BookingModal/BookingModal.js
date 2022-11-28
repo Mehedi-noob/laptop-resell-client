@@ -25,7 +25,7 @@ const BookingModal = ({ selectedProduct,setSelectedProduct, toast }) => {
             
         }
         console.log(booking)
-        fetch("http://localhost:5000/booking", {
+        fetch("https://laptop-resell-server.vercel.app/booking", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

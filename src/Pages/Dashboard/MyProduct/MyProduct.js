@@ -9,7 +9,7 @@ const MyProduct = () => {
     const [myProducts, setMyProducts] = useState([]);
     useEffect(() => {
       axios
-        .get(`http://localhost:5000/addproduct/${user?.email}`)
+        .get(`https://laptop-resell-server.vercel.app/addproduct/${user?.email}`)
         .then((res) => {
           setMyProducts(res.data);
         })
@@ -19,7 +19,7 @@ const MyProduct = () => {
     }, [user?.email, myProducts]);
 
     const handleAdvertize = (id) => {
-      fetch(`http://localhost:5000/myproduct/${id}`, {
+      fetch(`https://laptop-resell-server.vercel.app/myproduct/${id}`, {
             method: "PUT",
           })
             .then((res) => res.json())
@@ -32,7 +32,7 @@ const MyProduct = () => {
     
     // delete products 
     const handleDelete =(id)=>{
-      fetch(`http://localhost:5000/myproduct/${id}`, {
+      fetch(`https://laptop-resell-server.vercel.app/myproduct/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

@@ -46,7 +46,7 @@ const router = createBrowserRouter([
                 path: '/category/:name',
                 element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>,
                 loader: ({ params }) => {
-                    return fetch(`http://localhost:5000/category/${params.name}`);
+                    return fetch(`https://laptop-resell-server.vercel.app/category/${params.name}`);
                 }
             }
         ]
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myorders/:email',
                 loader: ({ params }) => {
-                    return fetch(`http://localhost:5000/booking/${params.email}`,{
+                    return fetch(`https://laptop-resell-server.vercel.app/booking/${params.email}`,{
                         headers: {
                             authorization: `bearer ${localStorage.getItem('accessToken')}`
                         }
@@ -75,35 +75,35 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/addproduct',
                 // loader: ({ params }) => {
-                //     return fetch(`http://localhost:5000/booking/${params.email}`);
+                //     return fetch(`https://laptop-resell-server.vercel.app/booking/${params.email}`);
                 // },
                 element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
             {
                 path: '/dashboard/allsellers',
                 // loader: ({ params }) => {
-                //     return fetch(`http://localhost:5000/booking/${params.email}`);
+                //     return fetch(`https://laptop-resell-server.vercel.app/booking/${params.email}`);
                 // },
                 element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
                 path: '/dashboard/allbuyers',
                 // loader: ({ params }) => {
-                //     return fetch(`http://localhost:5000/booking/${params.email}`);
+                //     return fetch(`https://laptop-resell-server.vercel.app/booking/${params.email}`);
                 // },
                 element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             },
             {
                 path: '/dashboard/myproduct',
                 // loader: ({ params }) => {
-                //     return fetch(`http://localhost:5000/booking/${params.email}`);
+                //     return fetch(`https://laptop-resell-server.vercel.app/booking/${params.email}`);
                 // },
                 element: <SellerRoute><MyProduct></MyProduct></SellerRoute>
             },
             {
                 path: '/dashboard/payment/:id',
                 loader: ({ params }) => {
-                    return fetch(`http://localhost:5000/bookings/${params.id}`);
+                    return fetch(`https://laptop-resell-server.vercel.app/bookings/${params.id}`);
                 },
                 element: <Payment></Payment>
             },
