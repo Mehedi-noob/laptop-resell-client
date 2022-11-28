@@ -7,7 +7,7 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const providerLogin = (provider) => {
         setLoading(true);
@@ -25,6 +25,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const updateUserProfile = (profile) => {
+        setLoading(true);
         return updateProfile(auth.currentUser, profile);
     }
 
@@ -39,9 +40,8 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
         });
 
-        return () => {
-            unsubscribe();
-        }
+
+        return ()=> unsubscribe();
 
     }, [])
 

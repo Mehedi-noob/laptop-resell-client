@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 
@@ -20,6 +21,7 @@ const CheckOutForm = ({bookingData}) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
+                // authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify({ resalePrice }),
         })
@@ -84,12 +86,14 @@ const CheckOutForm = ({bookingData}) => {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
+                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify(payment)
             })
                 .then(res => res.json())
                 .then(data => {
                     setSuccess('Congratulations! Your Payment Completed');
+                    toast.success('Successfully paid');
                     setTransactionId(paymentIntent.id)
                 })
         }

@@ -11,6 +11,7 @@ import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProduct from "../../Pages/Dashboard/MyProduct/MyProduct";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import ReprotedItems from "../../Pages/Dashboard/ReprotedItems/ReprotedItems";
+import CatogorySection from "../../Pages/Home/CategorySection/CatogorySection";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
@@ -43,10 +44,10 @@ const router = createBrowserRouter([
             },
             {
                 path: '/category/:name',
+                element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>,
                 loader: ({ params }) => {
                     return fetch(`http://localhost:5000/category/${params.name}`);
-                },
-                element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>
+                }
             }
         ]
     },
@@ -63,7 +64,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myorders/:email',
                 loader: ({ params }) => {
-                    return fetch(`http://localhost:5000/booking/${params.email}`);
+                    return fetch(`http://localhost:5000/booking/${params.email}`,{
+                        headers: {
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
+                        }
+                    });
                 },
                 element: <MyOrders></MyOrders>
             },

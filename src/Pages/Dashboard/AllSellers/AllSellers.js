@@ -7,7 +7,11 @@ const AllSellers = () => {
   const { data: sellers = [], refetch } = useQuery({
     queryKey: ['sellers'],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users?role=seller");
+      const res = await fetch("http://localhost:5000/users?role=seller",{
+        headers: {
+            authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+    });
       const data = await res.json();
 
       return data;
@@ -63,7 +67,7 @@ const AllSellers = () => {
 
                 <td><span className='text-3xl'>{seller.name}</span></td>
                 <td><span className='text-3xl'>{seller.email}</span></td>
-                <td><button onClick={() => handleVerify(seller.email)} className='btn btn-warning'>{seller.isVerified ? 'Verified' : 'Unverified'}</button></td>
+                <td><button onClick={() => handleVerify(seller.email)} className='btn btn-ghost'>{seller.isVerified ? <span className='text-info'>Verified ✓</span> : 'Unverified'}</button></td>
                 <td><button onClick={() => handleDelete(seller.email)} className='btn btn-error rounded'>Delete</button></td>
                 <Toaster/>
 

@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { IconName } from "react-icons/fa";
 
 const Products = ({product, setSelectedProduct}) => {
-    const blueTick = "https://stormcom.co.uk/wp-content/uploads/2021/04/1.png"
+    const blueTick = "https://ibb.co/C14G3P5"
     const [seller, setSeller] = useState([]);
 
     // const {data: seller = [], refetch} = useQuery({
@@ -52,7 +53,7 @@ const Products = ({product, setSelectedProduct}) => {
                     <p>years of use: {product.yearsOfUse}</p>
                     <p>Date: {product.postDate}</p>
                     <p>Date: {product.sellerEmail}</p>
-                    <p className='flex'>Sellers name: {product.sellerName}   {seller[0]?.isVerified&& <img className='w-5' src={blueTick} alt="Shoes" />}</p>
+                    <p className='flex'>Sellers name: {product.sellerName}  <span>  </span> {seller[0]?.isVerified&& <span className='text-info'>✓</span> }</p>
                     <div className="card-actions justify-end">
                         <label onClick={() => setSelectedProduct(product)} htmlFor="booking-modal" className="btn">Book Now</label>
                     </div>

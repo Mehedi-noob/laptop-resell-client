@@ -1,22 +1,34 @@
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import useToken from '../../Hooks/useToken';
+import LoaderComponent from '../../Shared/LoaderComponent/LoaderComponent';
 
 const Register = () => {
     const [error, setError] = useState('');
     const { createUser, updateUserProfile, loading, setLoading } = useContext(AuthContext);
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = useToken(createdUserEmail);
+    const navigate = useNavigate();
+
+    if(token){
+        navigate('/');
+    }
 
     const saveUser = (name, email, role) => {
         const user = { name, email, role, isVerified: false };
         fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {
-                "content-type": "application/json",
+                "content-type": "application/json"
+                // authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(user),
         })
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
+                setCreatedUserEmail(email)
             });
     };
 
@@ -37,11 +49,16 @@ const Register = () => {
                 setError('');
                 form.reset();
                 saveUser(name, email, role);
+                setCreatedUserEmail(user.email);
             })
             .catch(e => {
                 console.error(e);
                 setError(e.message);
             });
+    }
+
+    if(loading){
+        return <LoaderComponent></LoaderComponent>
     }
 
     return (

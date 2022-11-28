@@ -6,7 +6,11 @@ const AllBuyers = () => {
 const {data: buyers = [], refetch} = useQuery({
     queryKey: ['buyers'],
     queryFn: async() =>{
-        const res = await fetch("http://localhost:5000/users?role=buyer");
+        const res = await fetch("http://localhost:5000/users?role=buyer",{
+          headers: {
+              authorization: `bearer ${localStorage.getItem('accessToken')}`
+          }
+      });
         const data = await res.json();
 
         return data;
@@ -30,6 +34,7 @@ const handleDelete = (email) => {
 const handleVerify = (email) => {
   fetch(`http://localhost:5000/users/${email}`, {
         method: "PUT",
+        
       })
         .then((res) => res.json())
         .then((data) => {
