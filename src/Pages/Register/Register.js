@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import useToken from '../../Hooks/useToken';
@@ -77,6 +78,9 @@ const Register = () => {
             .catch(e => {
                 console.error(e);
                 setError(e.message);
+                toast(`Register unsuccessfull ${e.message}`);
+                setLoading(false);
+                
             });
     }
 
